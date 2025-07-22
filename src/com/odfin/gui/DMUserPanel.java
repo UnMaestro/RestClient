@@ -53,26 +53,26 @@ public class DMUserPanel extends JPanel{
 
 	public void changeStatus(ClientStatus status) {
 		switch (status) {
-		case ONLINE -> {
-			lblStatus.setBackground(Color.GREEN);
-			lblStatus.setToolTipText("Online");
+			case ONLINE -> {
+				lblStatus.setBackground(Color.GREEN);
+				lblStatus.setToolTipText("Online");
+			}
+			case OFFLINE -> {
+				lblStatus.setBackground(Color.GRAY);
+				lblStatus.setToolTipText("Offline");
+			}
+			case DND -> {
+				lblStatus.setBackground(Color.RED);
+				lblStatus.setToolTipText("Do-Not-Disturb");
+			}
+			case AWAY -> {
+				lblStatus.setBackground(Color.YELLOW);
+				lblStatus.setToolTipText("Abwesend");
+			}
+
+			default ->
+					throw new IllegalArgumentException("Unexpected value: " + status);
 		}
-		case OFFLINE -> {
-			lblStatus.setBackground(Color.GRAY);
-			lblStatus.setToolTipText("Offline");
-		}
-		case DND -> {
-			lblStatus.setBackground(Color.RED);
-			lblStatus.setToolTipText("Do-Not-Disturb");
-		}
-		case AWAY -> {
-			lblStatus.setBackground(Color.YELLOW);
-			lblStatus.setToolTipText("Abwesend");
-		}
-		
-		default ->
-		throw new IllegalArgumentException("Unexpected value: " + status);
-		}	
 	}
 	
     private static ImageIcon resizeIcon(ImageIcon icon) {
