@@ -1,5 +1,6 @@
 package com.odfin.gui;
 
+import com.odfin.domain.Message;
 import com.odfin.domain.User;
 import com.odfin.network.rest.RestNetworkClient;
 import com.odfin.gui.listener.MessageListener;
@@ -8,6 +9,9 @@ import com.odfin.gui.listener.UserListListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class ClientFrame extends JFrame {
 	private final RestNetworkClient client;
@@ -16,6 +20,8 @@ public class ClientFrame extends JFrame {
 	private JTextArea chatArea;
 	private JTextField inputField;
 	private JList<User> userList;
+
+	private final SimpleDateFormat fmt = new SimpleDateFormat("HH:mm:ss");
 
 	public ClientFrame(RestNetworkClient client, String currentUser, java.util.List<User> users) {
 		super("Chat - " + currentUser);
@@ -51,7 +57,23 @@ public class ClientFrame extends JFrame {
 		userList.addListSelectionListener(new UserListListener(userList, client));
 	}
 
-	public void loadChatHistory() { new MessageListener(client, inputField, chatArea, currentUser).refreshChat(); }
+	public void refreshChat() {
+		try {
+			java.util.List<Message> msgs = new ArrayList<>();
+			msgs = client.getMessages();
+			chatArea.setText("");
+			for (Message m : msgs) {
+				String time = fmt.format(new Date(m.getCreated()));
+				chatArea.append(String.format("[%s] %s: %s\n", time, m.getAuthor(), m.getText()));
+			}
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(this, "Fehler beim Abrufen: " + ex.getMessage());
+		}
+	}
+
+	public void loadChatHistory() {
+		refreshChat();
+	}
 
 	public static void launch(String baseUrl, String username, java.util.List<User> users) {
 		RestNetworkClient client = new RestNetworkClient(baseUrl);

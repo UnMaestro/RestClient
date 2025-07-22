@@ -2,17 +2,23 @@ package com.odfin.core;
 
 import com.odfin.domain.Message;
 import com.odfin.domain.User;
+import com.odfin.gui.ClientFrame;
 import com.odfin.network.rest.RestNetworkClient;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ClientApp {
 	public static void main(String[] args) throws Exception {
-		RestNetworkClient client = new RestNetworkClient("http://localhost:8080");
+		String baseURL = "http://localhost:8080";
+		String username = "user";
 
-		client.sendMessage(new Message("Pas", "Test"));
+		List<User> userList = Arrays.asList(
+				new User(username),
+				new User("Tolga"),
+				new User("Enes")
+		);
 
-		List<Message> history = client.getMessages();
-		history.forEach(m -> System.out.println(m.getAuthor() + ": " + m.getText() + " " + m.getCreated()));
+		ClientFrame.launch(baseURL, username, userList);
 	}
 }
