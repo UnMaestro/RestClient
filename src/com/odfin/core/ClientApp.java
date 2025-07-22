@@ -13,7 +13,12 @@ public class ClientApp {
 		String baseURL = "http://localhost:8080";
 		String username = "user";
 
-
+		List<User> userList = Arrays.asList(
+				new User(username),
+				new User("Tolga"),
+				new User("Enes"),
+				new User("Leon")
+		);
 
 		ClientFrame.launch(baseURL, username, userList);
 	}
