@@ -16,7 +16,8 @@ public class ClientApp {
 		List<User> userList = Arrays.asList(
 				new User(username),
 				new User("Tolga"),
-				new User("Enes")
+				new User("Enes"),
+				new User("Leon")
 		);
 
 		ClientFrame.launch(baseURL, username, userList);

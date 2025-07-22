@@ -15,6 +15,7 @@ public class MessageListener implements ActionListener {
     private final String currentUser;
     private final SimpleDateFormat fmt = new SimpleDateFormat("HH:mm:ss");
 
+
     public MessageListener(RestNetworkClient client, JTextField inputField, JTextArea chatArea, String currentUser) {
         this.client = client;
         this.inputField = inputField;

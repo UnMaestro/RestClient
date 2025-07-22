@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+
 public class StatusListener extends WindowAdapter {
     private final RestNetworkClient client; // falls Status-Updates via REST benötigt
     private final User currentUser;

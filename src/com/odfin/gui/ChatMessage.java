@@ -23,6 +23,7 @@ public class ChatMessage extends JPanel{
 	private Message messageContent;
 	
 	public ChatMessage(Message msg, boolean isClient) {
+
 		messageContent = msg;
 		setBackground(isClient ? CLIENT_COLOR : OTHER_COLORS);
 		
