@@ -10,9 +10,9 @@ public class ClientApp {
 	public static void main(String[] args) throws Exception {
 		RestNetworkClient client = new RestNetworkClient("http://localhost:8080");
 
-		client.sendMessage(new Message(new User("Pas"), "Hallo Welt!", System.currentTimeMillis()));
+		client.sendMessage(new Message("Pas", "Test"));
 
 		List<Message> history = client.getMessages();
-		history.forEach(m -> System.out.println(m.getOwner().getUsername() + ": " + m.getPayloadAsString()));
+		history.forEach(m -> System.out.println(m.getAuthor() + ": " + m.getText() + " " + m.getCreated()));
 	}
 }

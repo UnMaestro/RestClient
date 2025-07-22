@@ -21,7 +21,7 @@ public class StatusListener extends WindowAdapter {
     @Override
     public void windowClosing(WindowEvent e) {
         try {
-            client.sendMessage(new Message(currentUser, Status.OFFLINE.name(), System.currentTimeMillis()));
+            client.sendMessage(new Message(currentUser.getUsername(), Status.OFFLINE.name()));
         } catch (Exception ex) {
 
         }

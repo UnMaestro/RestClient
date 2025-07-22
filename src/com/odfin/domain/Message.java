@@ -4,34 +4,25 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.SerializationUtils;
 
-public class Message implements Serializable{
-
-	private User owner;
-	private byte[] payload;
+public class Message {
+	private String author;
+	private String text;
 	private long created;
-	
-	public Message(User owner, String rawPayload, long created) {
-		this.owner = owner;
-		this.payload = rawPayload.getBytes();
-		this.created = created;
+
+	public Message() {}
+
+	public Message(String author, String text) {
+		this.author = author;
+		this.text = text;
+		this.created = System.currentTimeMillis();
 	}
-	
-	public Message(User owner, byte[] payload, long created) {
-		this.owner = owner;
-		this.payload = payload;
-		this.created = created;
-	}
-	
-	public byte[] getRawPayload() {
-		return payload;
-	}
-	public String getPayloadAsString() {
-		return SerializationUtils.deserialize(payload);
-	}
-	public User getOwner() {
-		return owner;
-	}
-	public long getCreated() {
-		return created;
-	}
+
+	public String getAuthor() { return author; }
+	public void setAuthor(String author) { this.author = author; }
+
+	public String getText() { return text; }
+	public void setText(String text) { this.text = text; }
+
+	public long getCreated() { return created; }
+	public void setCreated(long created) { this.created = created; }
 }

@@ -27,14 +27,14 @@ public class ChatMessage extends JPanel{
 		setBackground(isClient ? CLIENT_COLOR : OTHER_COLORS);
 		
 		setOpaque(true);
-		lblTextMessage.setText(messageContent.getPayloadAsString());
+		lblTextMessage.setText(messageContent.getText());
 		
 		lblUsername.setOpaque(true);
 		lblTextMessage.setOpaque(true);
 		
 		Date date = new Date(messageContent.getCreated());
 		Timestamp timestamp = new Timestamp(date.getTime());
-		lblUsername.setText(messageContent.getOwner().getUsername() + " " + timestamp);
+		lblUsername.setText(messageContent.getAuthor() + " " + timestamp);
 		setLayout(new BoxLayout(this, 3));
 		
 		add(lblUsername);
@@ -42,11 +42,11 @@ public class ChatMessage extends JPanel{
 	}
 	
 	public String getMessage() {
-		return messageContent.getPayloadAsString();
+		return messageContent.getText();
 	}
 	
-	public User getUser() {
-		return messageContent.getOwner();
+	public String getUser() {
+		return messageContent.getAuthor();
 	}
 	
 	public void setPanelBackground(Color color) {

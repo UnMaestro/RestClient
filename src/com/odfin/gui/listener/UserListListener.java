@@ -20,8 +20,7 @@ public class UserListListener implements ListSelectionListener {
         if (!e.getValueIsAdjusting()) {
             User selected = userList.getSelectedValue();
             if (selected != null) {
-                // Beispiel: Direktnachricht senden oder Chat mit diesem User laden
-                // client.sendMessage(new Message(currentUser, "Start DM with " + selected.getUsername()));
+                //TODO
             }
         }
     }
