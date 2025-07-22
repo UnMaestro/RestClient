@@ -29,7 +29,7 @@ public class MessageListener implements ActionListener {
         try {
             client.sendMessage(new Message(currentUser, text));
             inputField.setText("");
-            refreshChat();
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Fehler beim Senden: " + ex.getMessage());
         }
